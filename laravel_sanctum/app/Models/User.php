@@ -6,7 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-//use Laravel\Sanctum\HasApiTokens;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -21,7 +21,6 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-
     ];
 
     /**
@@ -42,27 +41,4 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    //RELACION UNO A MUCHOS
-    //el nombre es en plural porque un usuario tiene muchos posts
-    public function posts()
-    {
-        return $this->hasMany(Post::class);
-    }
-
-    //RELACION UNO A UNO
-    //el nombre es en singular porque un usuario tiene un perfil
-    public function profile()
-    {
-        return $this->hasOne(Profile::class);
-    }
-
-    //RELACION MUCHOS A MUCHOS 
-    //el usuario tiene muchas comunidades
-    public function communitys()
-    {
-        return $this->belongsToMany(Community::class);
-    }
-
-
-
 }
